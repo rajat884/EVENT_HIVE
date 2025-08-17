@@ -51,15 +51,3 @@ The platform's functionality is meticulously tailored to each user role, providi
 - *Build Tool:* Apache Maven  
 - *Server:* Apache Tomcat  
 
----
-
-## 🚀 Quickstart
-
-Get a local instance running in a few steps.
-
-*Prerequisites:* JDK 8+, Maven, MySQL, Tomcat  
-
-1. *Clone the repository*
-   ```sh
-   git clone https://github.com/your_username/EventHive.git
-   cd EventHive
