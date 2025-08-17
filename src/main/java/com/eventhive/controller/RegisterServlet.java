@@ -1,6 +1,6 @@
 package com.eventhive.controller;
 
-// Assume User, UserDAO, PasswordUtil exist
+
 import com.eventhive.dao.UserDAO;
 import com.eventhive.model.User;
 import com.eventhive.util.PasswordUtil;
@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        // userDAO = new UserDAO();
+    
     }
 
     @Override
@@ -65,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/login.jsp?success=true");
 
         } catch (SQLException e) {
-            // --- Handle potential database errors ---
+        
             e.printStackTrace();
             request.setAttribute("errorMessage", "A database error occurred during registration. Please try again later.");
             request.getRequestDispatcher("/register.jsp").forward(request, response);

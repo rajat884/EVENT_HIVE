@@ -207,7 +207,7 @@ public class EventServlet extends HttpServlet {
     }
 
     private void deleteEvent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        // This action is typically for an Admin
+  
         int eventId = Integer.parseInt(request.getParameter("eventId"));
         eventDAO.deleteEvent(eventId);
         response.sendRedirect(request.getContextPath() + "/dashboard");

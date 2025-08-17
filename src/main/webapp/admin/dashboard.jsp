@@ -27,7 +27,7 @@
             </c:if>
 
             <c:choose>
-                <%-- ================= VIEW 1: EVENT MANAGEMENT ================= --%>
+            
                 <c:when test="${param.view == 'events'}">
                     <h2>Event Management</h2>
                     <p>Below is a list of all upcoming events on the platform. As an administrator, you can cancel any event that violates platform policy.</p>
@@ -69,7 +69,7 @@
                     </table>
                 </c:when>
 
-                <%-- ================= VIEW 2: DEFAULT (STATS & USERS) ================ --%>
+              
                 <c:otherwise>
                     <h2>Platform Statistics</h2>
                     <div class="stats-grid">

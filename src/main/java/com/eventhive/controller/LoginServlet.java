@@ -1,6 +1,5 @@
 package com.eventhive.controller;
 
-// Assume User, UserDAO, PasswordUtil exist
 import com.eventhive.dao.UserDAO;
 import com.eventhive.model.User;
 import com.eventhive.util.PasswordUtil;

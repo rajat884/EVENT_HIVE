@@ -36,7 +36,6 @@ public class RegistrationServlet extends HttpServlet {
         try {
             if ("register".equals(action)) {
                 registrationDAO.createRegistration(eventId, attendeeId);
-                // Optionally add a success message to the request
                 request.getSession().setAttribute("message", "Successfully registered for the event!");
             } else if ("cancel".equals(action)) {
                 registrationDAO.cancelRegistration(eventId, attendeeId);
