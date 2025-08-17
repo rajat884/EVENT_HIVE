@@ -84,21 +84,16 @@ public class DashboardServlet extends HttpServlet {
     }
     private void loadOrganizerDashboard(HttpServletRequest req, HttpServletResponse resp, int organizerId) throws SQLException, ServletException, IOException {
 
-        // Check if the user is asking for the special 'revenue' view
+
         String view = req.getParameter("view");
 
-        // ================== THE FIX IS HERE ==================
-        // Instead of getting ALL events, we now call our new methods to get events
-        // ONLY for the currently logged-in organizer.
+
         List<Event> upcomingEvents = eventDAO.getUpcomingEventsByOrganizerId(organizerId);
         List<Event> pastEvents = eventDAO.getPastEventsByOrganizerId(organizerId);
-        // ======================================================
 
-        // Create a combined list for the revenue page calculation
         List<Event> allOrganizerEvents = new ArrayList<>(upcomingEvents);
         allOrganizerEvents.addAll(pastEvents);
 
-        // ----------------- HANDLE REVENUE PAGE REQUEST -----------------
         if ("revenue".equals(view)) {
 
             Map<Integer, BigDecimal> eventRevenueMap = new HashMap<>();
@@ -118,7 +113,7 @@ public class DashboardServlet extends HttpServlet {
             req.getRequestDispatcher("/organizer/revenue.jsp").forward(req, resp);
 
         } else {
-            // This is the default view, now with the correctly filtered lists.
+      
             req.setAttribute("upcomingEvents", upcomingEvents);
             req.setAttribute("pastEvents", pastEvents);
 
