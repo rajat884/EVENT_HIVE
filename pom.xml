@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project Coordinates -->
+    <groupId>com.eventhive</groupId>
+    <artifactId>EventHive</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>EventHive-Event-Management-System</name>
+    <url>http://maven.apache.org</url>
+
+    <!-- Properties to manage dependency versions and compiler settings -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!-- All project dependencies are declared here -->
+    <dependencies>
+
+        <!--
+        Servlet and JSP APIs
+        Scope is 'provided' because these libraries are already included in any Servlet Container (like Tomcat).
+        Using the 'javax.*' namespace for compatibility with Tomcat 7/8/9.
+        -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+        JSTL (JSP Standard Tag Library)
+        Absolutely essential for writing clean JSP pages with tags like <c:forEach>, <c:if>, <fmt:formatDate>, etc.
+        -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!--
+        MySQL JDBC Driver
+        Allows the application to connect to a MySQL database.
+        -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version> <!-- A stable version of the MySQL 8 driver -->
+        </dependency>
+
+        <!--
+        Password Hashing Utility (jBCrypt)
+        A strong and simple library for hashing and verifying user passwords.
+        -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Build configuration -->
+    <build>
+        <finalName>EventHive</finalName>
+        <plugins>
+
+            <!-- Maven WAR Plugin: Configures how the .war file is built -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <!-- Setting this to false prevents build failures if you prefer to define all servlets with annotations -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Compiler Plugin: Sets the Java version for compilation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- HTTP port for the server -->
+                    <port>8080</port>
+                    <!-- The application context path. "/" means it will be at http://localhost:8080/ -->
+                    <path>/</path>
+                    <!-- This allows you to update JSPs and other static resources without restarting the server -->
+                    <contextReloadable>true</contextReloadable>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
