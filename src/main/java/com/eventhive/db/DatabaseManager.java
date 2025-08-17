@@ -9,7 +9,7 @@ public class DatabaseManager {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/eventhive_db?useSSL=false&serverTimezone=UTC";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Sumit@0803";
+    private static final String DB_PASSWORD = "";
     private static boolean driverLoaded = false;
 
     // Static block to load the MySQL JDBC driver once
